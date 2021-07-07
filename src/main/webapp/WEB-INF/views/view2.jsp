@@ -106,29 +106,35 @@ function drawReply(replys) {
     		</div>
     	</div>
     	<div class="row">
-    		<div class="col-sm-6">
+    		<div class="col-sm">
     	      <div id = "image"></div>
     		</div>
-    		<div class="col-sm-6">
+    		<div class="col-sm">
     			<div class="row">
     				<div class="col-sm-12">
-    			      <h2 id = "title">title1</h2>
+    			      <h2 id = "title"></h2>
     				</div>
     				<div class="col-sm-12">
-    			      <pre id = "contents">body1</pre>
+    			      <pre id = "contents"></pre>
     				</div>
     			</div>
     		</div>
-    		</div class="col-sm-6">
-    		    <div class="row">
-                    <div class="col-sm-12">
-                        <h2 id = "title_c">title1</h2>
-                    </div>
-                    <div class="col-sm-12">
-                    	<pre id = "contents_c">body1</pre>
-                    </div>
+    		<div class="col-sm">
+                <div class="row">
+                     <div class="col-sm-12">
+                         <h2 id = "title_c"></h2>
+                     </div>
+                     <div class="col-sm-12">
+                         <pre id = "contents_c"></pre>
+                     </div>
                 </div>
             </div>
+    	</div>
+    	<div class="row">
+    	<form action="writeReply2">
+    	<input type="text" class="form-control mb-2 mr-sm-2" id="contents_c" placeholder="답글" name="contents_c">
+    	<button type="submit" class="btn btn-primary mb-2">답글 등록</button>
+    	</form>
     	</div>
     	<div class="row">
         		<div class="col-sm-12">

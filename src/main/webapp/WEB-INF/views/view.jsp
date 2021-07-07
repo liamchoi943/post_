@@ -72,6 +72,8 @@ function drawReply(replys) {
     	  $("#image").append('<img src="resources/'+ result.image + '" style="width: 100%;">');
     	  $("#title").text(result.title);
     	  $("#contents").text(result.contents);
+    	  $("#title_c").text(result.title_c);
+          $("#contents_c").text(result.contents_c);
        }});
       $.ajax({url: "replyList?idx="+IDX, success: function(replys){
     	  drawReply(replys)
@@ -104,10 +106,10 @@ function drawReply(replys) {
     		</div>
     	</div>
     	<div class="row">
-    		<div class="col-sm-6">
+    		<div class="col-sm">
     	      <div id = "image"></div>
     		</div>
-    		<div class="col-sm-6">
+    		<div class="col-sm">
     			<div class="row">
     				<div class="col-sm-12">
     			      <h2 id = "title"></h2>
@@ -117,6 +119,22 @@ function drawReply(replys) {
     				</div>
     			</div>
     		</div>
+    		<div class="col-sm">
+                <div class="row">
+                     <div class="col-sm-12">
+                         <h2 id = "title_c"></h2>
+                     </div>
+                     <div class="col-sm-12">
+                         <pre id = "contents_c"></pre>
+                     </div>
+                </div>
+            </div>
+    	</div>
+    	<div class="row">
+    	<form action="writeReply2">
+    	<input type="text" class="form-control mb-2 mr-sm-2" id="contents_c" placeholder="답글" name="contents_c">
+    	<button type="submit" class="btn btn-primary mb-2">답글 등록</button>
+    	</form>
     	</div>
     	<div class="row">
         		<div class="col-sm-12">

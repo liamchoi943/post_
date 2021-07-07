@@ -1,7 +1,9 @@
 package jeep.post.controller;
 
 import jeep.post.domain.Board;
+import jeep.post.domain.Board2;
 import jeep.post.domain.Reply;
+import jeep.post.service.Board2Service;
 import jeep.post.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -18,37 +19,33 @@ import java.io.IOException;
 import java.util.List;
 
 @Controller
-public class IndexController {
+public class Board2Controller {
 
     @Autowired
-    private BoardService s;
-    @RequestMapping(value="/", method= RequestMethod.GET)
-    public String root() {
-        return "index";
-    }
+    private Board2Service board2Service;
 
-    @RequestMapping(value="/index", method=RequestMethod.GET)
+    @RequestMapping(value="/index2", method=RequestMethod.GET)
     public String index() {
-        return "index";
+        return "index2";
     }
 
-    @RequestMapping(value="/board", method=RequestMethod.GET)
+    @RequestMapping(value="/board2", method=RequestMethod.GET)
     public String board() {
-        return "board";
+        return "board2";
     }
 
-    @RequestMapping(value="/boardList", method=RequestMethod.GET)
+    @RequestMapping(value="/board2List", method=RequestMethod.GET)
     @ResponseBody
-    public List<Board> boardList(){
-        return s.getBoard();
+    public List<Board2> boardList(){
+        return board2Service.getBoard2();
     }
 
-    @RequestMapping(value="/write", method=RequestMethod.GET)
+    @RequestMapping(value="/write2", method=RequestMethod.GET)
     public String write() {
-        return "write";
+        return "write2";
     }
 
-    @RequestMapping(value="/writeAction", method=RequestMethod.POST)
+    @RequestMapping(value="/writeAction2", method=RequestMethod.POST)
     public String writeAction(
             HttpServletRequest req, @RequestParam("file") MultipartFile file,
             @RequestParam("title")String title,
@@ -57,33 +54,33 @@ public class IndexController {
         if (!file.getOriginalFilename().isEmpty()) {
             file.transferTo(new File(PATH + file.getOriginalFilename()));
         }
-        s.addBoard(new Board(0, title, contents, file.getOriginalFilename()));
-        return "board";
+        board2Service.addBoard2(new Board2(0, title, contents, file.getOriginalFilename()));
+        return "board2";
     }
 
-    @RequestMapping(value="/view", method=RequestMethod.GET)
+    @RequestMapping(value="/view2", method=RequestMethod.GET)
     public String view() {
-        return "view";
+        return "view2";
     }
 
-    @RequestMapping(value="/boardView", method=RequestMethod.GET)
+    @RequestMapping(value="/board2View", method=RequestMethod.GET)
     @ResponseBody
-    public Board boardList(@RequestParam("idx")int idx){
-        return s.getBoardOne(idx);
+    public Board2 boardList(@RequestParam("idx")int idx){
+        return board2Service.getBoard2One(idx);
     }
 
-    @RequestMapping(value="/replyList", method=RequestMethod.GET)
+    @RequestMapping(value="/replyList2", method=RequestMethod.GET)
     @ResponseBody
     public List<Reply> replyList(@RequestParam("idx")int boardIdx){
-        return s.getReply(boardIdx);
+        return board2Service.getReply(boardIdx);
     }
-    @RequestMapping(value="/writeReply", method=RequestMethod.POST)
+    @RequestMapping(value="/writeReply2", method=RequestMethod.POST)
     public String writeReply(
             @RequestParam("idx")int idx,
             @RequestParam("replyIdx")int replyIdx,
             @RequestParam("contents")String contents) {
-        s.addReply(new Reply(0, idx,replyIdx, contents));
-        return "redirect:view?idx=" + idx;
+        board2Service.addReply(new Reply(0, idx,replyIdx, contents));
+        return "redirect:view2?idx=" + idx;
     }
 
 }

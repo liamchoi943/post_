@@ -17,24 +17,17 @@ CREATE TABLE `tb_board` (
   `image` VARCHAR(255) NULL,
   PRIMARY KEY (`idx`));
  -->
-<mapper namespace="jeep.post.mapper.BoardMapper">
-    <select id="getBoard" resultType="jeep.post.domain.Board">
-        SELECT
-        idx, title, image, contents
-        FROM
-        tb_board
-        ORDER BY idx asc
-    </select>
+<mapper namespace="jeep.post.mapper.Board2Mapper">
     <select id="getBoard2" resultType="jeep.post.domain.Board2">
         SELECT
-        idx, title, image, contents, group_id, order, indent
+        idx, title, image, contents, group_id, group_order, indent
         FROM
         tb_board2
-        ORDER BY group_id desc, `order` asc
+        ORDER BY group_id desc, group_order asc
     </select>
-    <insert id="addBoard">
+    <insert id="addBoard2">
             INSERT INTO
-            tb_board
+            tb_board2
             (
             title,
             image,
@@ -47,11 +40,11 @@ CREATE TABLE `tb_board` (
             #{contents}
             )
     </insert>
-    <select id="getBoardOne" resultType="jeep.post.domain.Board">
+    <select id="getBoard2One" resultType="jeep.post.domain.Board2">
         SELECT
         idx, title, image, contents
         FROM
-        tb_board
+        tb_board2
         WHERE
         idx = #{idx}
     </select>

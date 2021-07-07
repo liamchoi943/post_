@@ -33,7 +33,7 @@
         <a class="nav-link" href="board">게시판</a>
       </li>
       <li class="nav-item">
-              <a class="nav-link" href="board2">게시판2</a>
+        <a class="nav-link" href="board2">게시판2</a>
       </li>
     </ul>
   </div>

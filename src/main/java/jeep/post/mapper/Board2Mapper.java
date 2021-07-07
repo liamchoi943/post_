@@ -7,11 +7,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository("BoardMapper")
-public interface BoardMapper {
-    public boolean addBoard(Board b);
-    public List<Board> getBoard();
-    public Board getBoardOne(int idx);
+@Repository("Board2Mapper")
+public interface Board2Mapper {
+
+    public boolean addBoard2(Board2 b);
+    public List<Board2> getBoard2();
+    public Board2 getBoard2One(int idx);
     public boolean addReply(Reply r);
     public List<Reply> getReply(int boardIdx);
 

@@ -1,6 +1,7 @@
 package jeep.post.service;
 
 import jeep.post.domain.Board;
+import jeep.post.domain.Board2;
 import jeep.post.domain.Reply;
 import jeep.post.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;

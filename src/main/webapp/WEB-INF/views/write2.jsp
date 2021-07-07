@@ -18,24 +18,6 @@
     background: #aaa;
   }
   </style>
-<script type="text/javascript">
-$(document).ready(function() {
-    $("#writeBtn").click(function(){
-    	location.href ="write";
-    })
-    $.ajax({url: "boardList", success: function(result){
-        var html = "";
-    	result.forEach(function(item){
-        	html+= "<tr> <td><a href = 'view?idx=" + item.idx + "'>" + item.title + "</a>"
-        })
-       $("#listArea").append(html)
-       $('#example').DataTable();
-     }});
-     $("#deleteBtn").click(function(){
-    	location.href ="write";
-     })
-} );
-</script>
 </head>
 <body>
 
@@ -52,26 +34,28 @@ $(document).ready(function() {
       <li class="nav-item">
         <a class="nav-link" href="board">게시판</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="board2">게시판2</a>
-      </li>
     </ul>
   </div>
 </nav>
+
 <div class="container" style="margin-top:30px">
 	<div class="row">
 		<div class="col-sm-12">
-	      <h2>게시판</h2>
-			<table id="example" class="display" style="width:100%">
-		        <thead>
-		            <tr>
-		                <th>제목</th>
-		            </tr>
-		        </thead>
-		        <tbody id = "listArea">
-		        </tbody>
-		    </table>
-			<button type="button" class="btn btn-primary" id = "writeBtn">글쓰기</button>
+	      <h2>글쓰기</h2>
+	        <form action="writeAction" method = "POST" enctype="multipart/form-data">
+				<div class="form-group">
+				  <label for="usr">제목:</label>
+				  <input type="text" class="form-control" id="title" name = "title">
+				</div>
+			    <div class="form-group">
+			      <input type="file" class="form-control-file border" name="file">
+			    </div>
+			    <div class="form-group">
+				  <label for="comment">내용:</label>
+				  <textarea class="form-control" rows="5" id="contents" name = "contents"></textarea>
+				</div>
+			    <button type="submit" class="btn btn-primary">글쓰기</button>
+			  </form>
 		</div>
 	</div>
 </div>
