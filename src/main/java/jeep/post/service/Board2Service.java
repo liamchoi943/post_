@@ -14,8 +14,8 @@ public class Board2Service {
     @Autowired
     private Board2Mapper board2Mapper;
 
-    public List<Board2> getBoard2(){
-        return board2Mapper.getBoard2();
+    public List<Board2> getBoard2(int start, int perPage){
+        return board2Mapper.getBoard2(start, perPage);
     }
     public boolean addBoard2(Board2 b) {
         return board2Mapper.addBoard2(b);

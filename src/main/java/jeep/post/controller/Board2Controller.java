@@ -36,8 +36,10 @@ public class Board2Controller {
 
     @RequestMapping(value="/board2List", method=RequestMethod.GET)
     @ResponseBody
-    public List<Board2> boardList(){
-        return board2Service.getBoard2();
+    public List<Board2> boardList(@RequestParam("page") int page,
+                                  @RequestParam("perPage") int perPage) {
+        int start =(page-1)*perPage;
+        return board2Service.getBoard2(start, perPage);
     }
 
     @RequestMapping(value="/write2", method=RequestMethod.GET)

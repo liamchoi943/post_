@@ -3,6 +3,8 @@ package jeep.post.mapper;
 import jeep.post.domain.Board;
 import jeep.post.domain.Board2;
 import jeep.post.domain.Reply;
+import jeep.post.paging.Criteria;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,9 +13,13 @@ import java.util.List;
 public interface Board2Mapper {
 
     public boolean addBoard2(Board2 b);
-    public List<Board2> getBoard2();
+    public List<Board2> getBoard2(@Param("start") int start,
+                                  @Param("perPage") int perPage);
     public Board2 getBoard2One(int idx);
     public boolean addReply(Reply r);
     public List<Reply> getReply(int boardIdx);
+
+    public int selectBoard2TotalCount(Criteria criteria);
+
 
 }
