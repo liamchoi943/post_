@@ -1,5 +1,6 @@
 package jeep.post.controller;
 
+import jeep.post.domain.AjaxResponse;
 import jeep.post.domain.Board;
 import jeep.post.domain.Board2;
 import jeep.post.domain.Reply;
@@ -36,10 +37,18 @@ public class Board2Controller {
 
     @RequestMapping(value="/board2List", method=RequestMethod.GET)
     @ResponseBody
-    public List<Board2> boardList(@RequestParam("page") int page,
-                                  @RequestParam("perPage") int perPage) {
+    public AjaxResponse boardList(@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                                  @RequestParam(value = "perPage", required = false, defaultValue = "10") int perPage) {
+
         int start =(page-1)*perPage;
-        return board2Service.getBoard2(start, perPage);
+        List<Board2> board2 = board2Service.getBoard2(start, perPage);
+        return AjaxResponse.builder()
+                .recordsTotal(300)
+                .draw(5)
+                .recordsFiltered(300)
+                .data(board2)
+                .build();
+
     }
 
     @RequestMapping(value="/write2", method=RequestMethod.GET)

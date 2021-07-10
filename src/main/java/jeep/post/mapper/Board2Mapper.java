@@ -3,7 +3,6 @@ package jeep.post.mapper;
 import jeep.post.domain.Board;
 import jeep.post.domain.Board2;
 import jeep.post.domain.Reply;
-import jeep.post.paging.Criteria;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -19,7 +18,6 @@ public interface Board2Mapper {
     public boolean addReply(Reply r);
     public List<Reply> getReply(int boardIdx);
 
-    public int selectBoard2TotalCount(Criteria criteria);
 
 
 }

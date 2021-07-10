@@ -25,14 +25,9 @@ $(document).ready(function() {
     })
     $.ajax({
         url: "board2List",
-        dataType: "json",
-        data: {
-            page: 1,
-            perPage: 10
-        },
         success: function(result) {
             var html = "";
-    	    result.forEach(function(item){
+    	    result.data.forEach( function(item){
     	         var html2 = "";
                  for (var i=0;i<item.indent;i++) {
                       html2 +=  "&nbsp;&nbsp;&nbsp;";
@@ -40,12 +35,16 @@ $(document).ready(function() {
                             html2 += "ㄴ";
                       }
                  }
+                 console.log("asdf");
+                 console.log(item);
         	     html+= "<tr><td><pre>" + html2 + "<a href = 'view?idx=" + item.idx + "'>" + item.title + "</a></pre></td></tr>";
         })
-        console.log(html);
+
        $("#listArea").append(html)
        $('#example').DataTable({
-            ordering: false
+            ordering: false,
+            processing: true,
+            serverSide: true,
 
        });
      }});
